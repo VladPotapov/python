@@ -1,0 +1,6 @@
+Hello world
+My name is Roman
+I from Russia
+I'm a cool programmer
+I want to work in Yandex
+but I don't take

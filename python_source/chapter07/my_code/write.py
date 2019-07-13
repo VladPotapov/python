@@ -1,0 +1,11 @@
+write_file = open('write.txt', 'w', encoding='utf-8')
+write_file.write('new text\n')
+write_file.write('vtoroy text\n')
+write_file.write('predposledniy text\n')
+write_file.write('posledniy text\n')
+write_file.close()
+read_file = open('write.txt', 'r', encoding='utf-8')
+for i in read_file:
+	print(i)
+read_file.close()
+input('\nEnter')
