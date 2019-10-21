@@ -45,17 +45,17 @@ def displayBoard(missedLetters, correctLetters, secretWord):
    print(HANGMAN_PICS[len(missedLetters)])
    print()
 
-   print('Ошибочные буквы ', end=' ')
+   print("Ошибочные буквы: ", end=' ')
    for letter in missedLetters:
-      print(leter, end=' ')
+      print(litter, end=' ')
    print()
 
    blanks = '_' * len(secretWord)
 
    for i in range(len(secretWord)):
       if secretWord[i] in correctLetters:
-         blanks = blanks[:i] secretWord[i] + blanks[i+1:]
-   
+         blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
+
    for letter in blanks:
       print(letter, end=' ')
    print()
@@ -63,13 +63,30 @@ def displayBoard(missedLetters, correctLetters, secretWord):
 def getGuess(alreadyGuessed):
    while True:
       print('Введите букву ')
-      guess = input('')
+      guess = input()
       guess = guess.lower()
+      
       if len(guess) != 1:
-         print('Введите одну букву!')
+         print('Введите только одну букву ')
       elif guess in alreadyGuessed:
-         print('Вы уже называли эту букву')
-      elif not in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя':
-         print('Введите русскую букву ')
+         print('Вы уже называли эту букву. Назовите другую ')
+      elif guess not in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя':
+         print('Вы ввели недопустимый символ')
+         print('Введите букву ')
       else:
          return guess
+
+def playAgain():
+   print('Хотите сыграть ещё раз? (да/нет) ')
+   return input().lower().startswith('д')
+
+print('В И С Е Л И Ц А')
+missedLetters = ''
+correctLetters = ''
+secretWord = getRandomWord(words)
+gameIsDone = False
+
+while True:
+   displayBoard(missedLetters, correctLetters, secretWord)
+
+   

@@ -68,7 +68,7 @@ class Animal():
         if self.hunger < 0:
             self.hunger = 0
         self.__pass_time()
-    def play(self, fun):
+    def game(self, fun):
         self.fun = fun
         i = 0
         delight = ["еху", "ух", "супер", "ещё", "ииияя", "вай как круто", "эге-ге", "смотри как я могу", "как круто", "ща сдохну"]
@@ -84,18 +84,55 @@ class Animal():
         self.__pass_time()
 
 def main():
-    print('Добро пожаловать в зоопарк')
-    print('Вот наши питомцы')
     lion = Animal('Alex')
     zebra = Animal('Marty')
     hippo = Animal('Gloria')
     giraffe = Animal('Melman')
-    
-    print(lion)
-    print(zebra)
-    print(hippo)
-    print(giraffe)
-
-    Animal.status()
-
+    animals = [lion, zebra, hippo, giraffe]
+    print('Добро пожаловать в зоопарк')
+    choice = None
+    while choice != '0':
+        print(
+            """
+            0 выход
+            1 показать питомцев
+            2 выбрать питомца
+            3 покормить питомца
+            4 пойграть с питомцем
+            5 узнать состояние
+            """
+        )
+        choice = input('выбрать пункт ')
+        if choice == '0':
+            print('до скорой встречи')
+            break
+        elif choice == '1':
+            for i in range(len(animals)):
+                print("Питомец № ", animals[i].number, " Имя ", animals[i].name)
+        elif choice == '2':
+            ans = int(input('показать зверюшку № '))
+            while ans < 0 or ans > len(animals)-1:
+                ans = int(input('показать зверюшку № '))
+            print(animals[ans])
+        elif choice == '3':
+            food = int(input('Сколько еды вы хотите дать? от 0 до 10 '))
+            while food < 0 or food > 10:
+                food = int(input('Введите заново '))
+            ans = int(input('какого питомца покормить? № '))
+            while ans < 0 or ans > len(animals)-1:
+                ans = int(input('какого питомца покормить? № '))
+            animals[ans].eat(food)
+        elif choice == '4':
+            play = int(input('Сколько времени играть? от 0 до 10 '))
+            while play < 0 or play > 10:
+                play = int(input('Сколько времени играть? от 0 до 10 '))
+            ans = int(input('Какого питомца выбрать? № '))
+            while ans < 0 or ans > len(animals)-1:
+                ans = int(input('Какого питомца выбрать? № '))
+            animals[ans].game(play)
+        elif choice == '5':
+            ans = int(input('Какого питомца выбрать? № '))
+            while ans < 0 or ans > len(animals)-1:
+                ans = int(input('Какого питомца выбрать? № '))
+            animals[ans].talk()
 main()

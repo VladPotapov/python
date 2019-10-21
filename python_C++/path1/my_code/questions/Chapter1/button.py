@@ -1,0 +1,22 @@
+from graph import *
+penSize(2)
+penColor('#a0a0a0')
+brushColor('#d0d0d0')
+line(100,20,100,50)
+line(100,50,20,50)
+penSize(1)
+penColor('#e8e8e8')
+line(20,50,20,20)
+line(20,20,100,20)
+
+#active button
+penSize(1)
+penColor('#a0a0a0')
+brushColor('#d0d0d0')
+line(100,70,100,100)
+line(100,100,20,100)
+penSize(0.1)
+penColor('#e8e8e8')
+line(20,100,20,70)
+line(20,70,100,70)
+run()

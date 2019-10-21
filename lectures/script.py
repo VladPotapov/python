@@ -1,13 +1,8 @@
-def is_simple_number(x):
-    """определяет является ли число простым
-    x - целое положительное число
-    если простое True, иначе False"""
-    divisor = 2
-    while divisor < x:
-        #esli x delitsya na delitel
-        if x%divisor == 0:
-            #chislo sostavnoe
-            return False
-        divisor += 1
-    #chislo prostoe
-    return True
+def arr(A,B):
+    B = [0 if x<0 else x**2 for x in A if x % 2 == 0]
+    return B
+a1 = [1, 2, 3, 5, 7, 9, 18, 4]
+b1 = []
+itog = arr(a1, b1)
+
+print(itog)
