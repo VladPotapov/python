@@ -22,7 +22,7 @@ class Card(object):
     def flip(self):
         self.is_face_up = not self.is_face_up
 
-class Hard(object):
+class Hand(object):
     """Набор карт у одного игрока"""
     def __init__(self):
         self.cards = []
@@ -44,7 +44,7 @@ class Hard(object):
 
     def give(self, card, other_hand):
         self.cards.remove(card)
-        self.other_hand.add(card)
+        other_hand.add(card)
 
 class Deck(Hand):
     """колода игральных карт"""
@@ -58,7 +58,7 @@ class Deck(Hand):
         random.shuffle(self.cards)
 
     def deal(self, hands, per_hand = 1):
-        for round in range(per_hand):
+        for rounds in range(per_hand):
             for hand in hands:
                 if self.cards:
                     top_card = self.cards[0]

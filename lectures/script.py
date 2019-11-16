@@ -1,8 +1,15 @@
-def arr(A,B):
-    B = [0 if x<0 else x**2 for x in A if x % 2 == 0]
-    return B
-a1 = [1, 2, 3, 5, 7, 9, 18, 4]
-b1 = []
-itog = arr(a1, b1)
+num = "12352760992863415237661352".split()
+for i in num:
+    print(i, end=" ")
+    
+N = len(num)
+F = [0] * 10
 
-print(itog)
+for i in range(N):
+    x = int(input("Number "))
+    F[x] += 1
+
+for i in range(len(F)):
+    print(F[i], end=" ")
+
+print(l)

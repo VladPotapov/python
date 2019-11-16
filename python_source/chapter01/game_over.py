@@ -1,6 +1,7 @@
-# Game Over
-# Demonstrates the print function
+print("New Game")
 
-print("Game Over")
+input("\nнажмите Enter для продолжения")
 
-input("\n\nPress the enter key to exit.")
+print("\nGame Over")
+
+input("\nEnter")
