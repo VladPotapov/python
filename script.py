@@ -1,5 +1,10 @@
-s1 = "hello"
-s2 = s1
-s2 = "music"
+import random
 
-print(s1, " != ", s2)
+def min_max(x, y):
+    return random.randint(x, y)
+
+num = min_max(1, 2)
+
+print(num)
+
+input("\nEnter")

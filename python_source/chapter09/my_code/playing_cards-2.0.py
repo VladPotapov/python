@@ -1,13 +1,8 @@
 class Card(object):
-    """одна игральная карта"""
+    """Игральная карта"""
     RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    SUITS = ["c", "d", "h", "s"]
 
-    #c - clubs
-    #d - diamonds
-    #h - hearts
-    #s - spades
-    SUITS = ['c', 'd', 'h', 's']
-    
     def __init__(self, rank, suit):
         self.rank = rank
         self.suit = suit
@@ -17,7 +12,7 @@ class Card(object):
         return rep
 
 class Hand(object):
-    """Набор карт на руках"""
+    """кол-во карт на руках"""
     def __init__(self):
         self.cards = []
 
@@ -27,13 +22,12 @@ class Hand(object):
             for card in self.cards:
                 rep += str(card) + "\t"
         else:
-            rep = "Карт нет"
-        
+            rep = "<пусто>"
         return rep
 
     def clear(self):
         self.cards = []
-    
+
     def add(self, card):
         self.cards.append(card)
 
@@ -42,12 +36,12 @@ class Hand(object):
         other_hand.add(card)
 
 class Deck(Hand):
-    """колода игральных кард"""
+    """колода карт"""
     def populate(self):
         for suit in Card.SUITS:
             for rank in Card.RANKS:
                 self.add(Card(rank, suit))
-    
+
     def shuffle(self):
         import random
         random.shuffle(self.cards)
@@ -59,30 +53,38 @@ class Deck(Hand):
                     top_card = self.cards[0]
                     self.give(top_card, hand)
                 else:
-                    print("карты кончились")
+                    print("карты закончились")
 
+#main
 deck1 = Deck()
 
-print('Создана новая колода карт')
+print("Создана новая колода")
+print("Deck:")
+print(deck1)
+
 deck1.populate()
+
+print("Обновление колоды")
+print(deck1)
+
 deck1.shuffle()
+
+print("Перемешать колоду")
 print(deck1)
 
 my_hand = Hand()
-your_hand = Hand()
-
-hands = [my_hand, your_hand]
-
+you_hand = Hand()
+hands = [my_hand, you_hand]
 deck1.deal(hands, per_hand = 5)
 
-print('У меня на руках карты')
+print("Карты розданы игрокам")
+print("мне")
 print(my_hand)
-print('У вас на руках карты')
-print(your_hand)
-print('В колоде остались')
+print("вам")
+print(you_hand)
+print("Оставшиеся карты")
 print(deck1)
 
 deck1.clear()
-print('Колода очищена')
-print('Вот как она выглядет ', deck1)
-input('\nEnter')
+print("колода очищена")
+print(deck1)
