@@ -47,7 +47,7 @@ class Deck(Hand):
         random.shuffle(self.cards)
 
     def deal(self, hands, per_hand = 1):
-        for rounds in range(per_hand):
+        for _ in range(per_hand):
             for hand in hands:
                 if self.cards:
                     top_card = self.cards[0]
@@ -88,3 +88,5 @@ print(deck1)
 deck1.clear()
 print("колода очищена")
 print(deck1)
+
+input("\nEnter")

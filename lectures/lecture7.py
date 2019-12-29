@@ -32,24 +32,34 @@ def matryoshka(n):
 #           c1 
 #глубина рекурсии
 
-window = gr.GraphWin("Russian game", 300, 300)
-alpha = 0.2
+window = gr.GraphWin("Russian game", 600, 600)
+alpha = 0.1
 
-def fractal_rectangle(a, b, c, d, deep = 5):
+def fractal_rectangle(A, B, C, D, deep = 10):
     if deep < 1:
         return
     
-    for M, N in (a, b), (c, d), (d, a):
+    #*A = A[0], A[1] и т.д.
+    #gr.Line(gr.Point(*A), gr.Point(*B))
+
+    for M, N in (A, B), (B, C), (C, D), (D, A):
         gr.Line(gr.Point(*M), gr.Point(*N)).draw(window)
+    
+    A1 = (A[0] * (1-alpha) + B[0] * alpha, A[1] * (1-alpha) + B[1] * alpha)
+    B1 = (B[0] * (1-alpha) + C[0] * alpha, B[1] * (1-alpha) + C[1] * alpha)
+    C1 = (C[0] * (1-alpha) + D[0] * alpha, C[1] * (1-alpha) + D[1] * alpha)
+    D1 = (D[0] * (1-alpha) + A[0] * alpha, D[1] * (1-alpha) + A[1] * alpha)
 
-        A1 = (A[0] * (1 - alpha) + B[0] * alpha, A[1] * (1 - alpha) + B[1] * alpha)
-        B1 = (B[0] * (1 - alpha) + C[0] * alpha, B[1] * (1 - alpha) + C[1] * alpha)
-        C1 = (C[0] * (1 - alpha) + D[0] * alpha, C[1] * (1 - alpha) + D[1] * alpha)
-        D1 = (D[0] * (1 - alpha) + A[0] * alpha, D[1] * (1 - alpha) + A[1] * alpha)
-        fractal_rectangle(A1, B1, C1, D1, deep-1)
+    fractal_rectangle(A1, B1, C1, D1, deep-1)
 
-#A1x = (1-alpha) * Ax + alpha * Bx 
-# = A1 = (A[0] * (1 - alpha) + B[0] * alpha, A[1] * (1 - alpha) + B[1] * alpha)
+fractal_rectangle((100, 100), (500, 100), (500, 500), (100, 500), 100)
 
-fractal_rectangle((100, 100), (500, 100), (500, 500), (100, 500))
+#Факториал 
+# n!= (n-1)!*n 
+# f(n) {
+# 1 || n <= 1 
+# f(n) * n, n > 1
+# }
+
+
 input("\nEnter")
