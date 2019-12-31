@@ -31,6 +31,7 @@ def milling(que):
         return "Вы ничего не ввели"
     else:
         return "чё чё чё?"
+
 #окно приложения
 window = Tk()
 window.title("проект Миллиган")
