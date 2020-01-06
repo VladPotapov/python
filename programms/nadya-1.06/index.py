@@ -1,6 +1,8 @@
 from tkinter import *
 import random
 import module
+#для вывода голоса
+import pyttsx3
 
 def click():
     """
@@ -12,6 +14,11 @@ def click():
 
 def main(que):
     ans = milling(que)
+    #вывод голосового сообщения
+    engine = pyttsx3.init()
+    engine.say(ans)
+    engine.runAndWait()
+    #вывод текста в окне
     txt.configure(text = ans)
 
 def milling(que):
@@ -48,6 +55,7 @@ p.grid(column = 0, row = 2)
 
 inp = Entry(window, width = 30)
 inp.grid(column = 0, row = 3)
+inp.focus()
 
 txt = Label(window, text = "", width = 44, font = ("Arial Bold", 12), bg = "black", fg = "red")
 txt.grid(column = 0, row = 5)

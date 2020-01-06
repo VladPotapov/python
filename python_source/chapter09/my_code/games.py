@@ -11,22 +11,20 @@ class Player(object):
         rep = self.name + ":\t" + str(self.score)
         return rep
 
-def ask_yes_no(question):
-    """задаёт вопрос да или нет"""
-    response = None
-    while response not in ("y", "n"):
-        response = input(question).lower()
-    return response
+def ask_yes_no(que):
+    """задаёт вопрос с ответом да / нет"""
+    res = None
+    while res not in ("y", "n"):
+        res = input(que).lower()
+    return res
 
-def ask_number(question, low, high):
-    """ввести число в диапозоне low, high"""
-    response = None
-
-    while response not in range(low, high):
-        response = int(input(question))
-    
-    return response
+def ask_number(que, low, high):
+    """просит ввести число из диапозона low, high"""
+    res = None
+    while res not in range(low, high):
+        res = int(input(que))
+    return res
 
 if __name__ == "__main__":
-    print("Вы запустили этот модуль напрямую (и не «импортировали» его).")
-    input("\nНажмите клавишу ввода, чтобы выйти")
+    print("импортируйте модуль")
+    input("\nEnter")

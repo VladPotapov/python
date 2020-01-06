@@ -83,15 +83,58 @@ def f(n:int):
 # gcd(a, b - a), b > a
 # }
 
+X = 225
+Y = 800
+
 def gcd(a, b):
     #функция подходящая для констант
+    #ищит общий делитель
     if a == b:
         return a
     elif a > b:
+        #a - b остаток от вычитания a на b 
+        # если при вычитании а 
+        # становиться меньше b 
+        # из b вычитается a 
+        # до тех пор пока не останется 0
         return gcd(a - b, b)
     else:
         return gcd(a, b - a)
 
+num = gcd(X, Y)
 
+#НОД (a, b) = НОД(a % b, b)
+
+def gcd2(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd2(b, a % b)
+
+def gcd3(a, b):
+    return (a if b == 0 else gcd3(b, a % b))
+
+#Быстрое возведение в степень
+#a**n = a * a * a * a обочное возведение в степень n раз
+
+#подходит при положительном числе
+#a**n = a**n-1*a
+#a**0 = 1 
+# pow(a, n) {
+# 1, n = 0 
+# pow(a, n-1)*a, n > 0 (n - нечёт.)
+# pow(a**2, n//2), n чёт
+# }
+
+def pow(a:float, n:int):
+    if n == 0:
+        return 1
+    elif n%2 == 1:  #нечётное
+        return pow(a, n-1) * a
+    else:   #чётное
+        return pow(a**2, n//2)
+
+#a**2k = (a**2)k или  a**n = (a**2)**n/2
+    
 
 input("\nEnter")
