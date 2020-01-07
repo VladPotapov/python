@@ -34,6 +34,13 @@ def milling(que):
         length = len(module.ans_bye) - 1
         index = random.randint(0, length)
         return module.ans_bye[index]
+    elif que in module.programms:
+        #запуск программ
+        import os
+        for i in range(len(module.programms)):
+            if que == module.programms[i]:
+                play = module.ans_programms[i]
+                os.system(play)
     elif que in module.none_text:
         return "Вы ничего не ввели"
     else:

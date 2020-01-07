@@ -13,7 +13,7 @@ def click():
     main(res)
 
 def main(que):
-    ans = milling(que)
+    ans = bot(que)
     #вывод голосового сообщения
     engine = pyttsx3.init()
     engine.say(ans)
@@ -21,7 +21,7 @@ def main(que):
     #вывод текста в окне
     txt.configure(text = ans)
 
-def milling(que):
+def bot(que):
     if que in module.hello:
         length = len(module.ans_hello) - 1
         index = random.randint(0, length)
@@ -34,6 +34,12 @@ def milling(que):
         length = len(module.ans_bye) - 1
         index = random.randint(0, length)
         return module.ans_bye[index]
+    elif que in module.programms:
+        import os
+        for i in range(len(module.programms)):
+            if que == module.programms[i]:
+                play = module.ans_programms[i]
+                os.system(play)
     elif que in module.none_text:
         return "Вы ничего не ввели"
     else:
