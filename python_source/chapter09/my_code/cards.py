@@ -47,7 +47,7 @@ class Hand(object):
         other_hand.add(card)
 
 class Deck(Hand):
-    """колода игральных карт"""
+    """Калода игральных карт"""
     def populate(self):
         for suit in Card.SUITS:
             for rank in Card.RANKS:
@@ -64,7 +64,8 @@ class Deck(Hand):
                     top_card = self.cards[0]
                     self.give(top_card, hand)
                 else:
-                    print("Закончились карты")
+                    print("Не могу больше сдавать: карты закончились")
 
 if __name__ == "__main__":
     print("Модуль для карточных игр")
+    input("\nEnter")

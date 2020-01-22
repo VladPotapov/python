@@ -25,11 +25,12 @@ A = []
 for x in range(10):
     A.append(x**2)
 
-def arr3():
+def  arr3():
+    A = [1, 2, 3, 4, 5, 7, 12, 9, 6]
     B = []
-    A = [1, 2, 3, 4, 5, 7, 9, 12, 6]
+
     for x in A:
-        if x % 2 == 2:
+        if x % 2 == 0:
             B.append(x**2)
 
 #тоже самое что и arr()

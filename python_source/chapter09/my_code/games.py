@@ -11,18 +11,18 @@ class Player(object):
         rep = self.name + ":\t" + str(self.score)
         return rep
 
-def ask_yes_no(que):
+def ask_yes_no(question):
     """задаёт вопрос с ответом да / нет"""
     res = None
     while res not in ("y", "n"):
-        res = input(que).lower()
+        res = input(question).lower()
     return res
 
-def ask_number(que, low, high):
+def ask_number(question, low, high):
     """просит ввести число из диапозона low, high"""
     res = None
     while res not in range(low, high):
-        res = int(input(que))
+        res = int(input(question))
     return res
 
 if __name__ == "__main__":
