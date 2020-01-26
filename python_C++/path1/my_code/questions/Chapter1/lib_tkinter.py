@@ -37,7 +37,7 @@ def clicked():
     else:
         lang = ""
 
-    hello.configure(text = "Имя: {}".format(txt.get()) + "\nУровень {}".format(combo.get()) + "\nЯ знаю " + js + " " + python + " " + cpp + "\nСамый крутой язык " + lang + "\nОбо мне: void AppearText(int x, int y, const char* text, COLORREF from, COLORREF to, int time, int steps)" + about.INSERT)
+    hello.configure(text = "Имя: {}".format(txt.get()) + "\nУровень {}".format(combo.get()) + "\nЯ знаю " + js + " " + python + " " + cpp + "\nСамый крутой язык " + lang)
     
 
 window = Tk()
@@ -102,6 +102,7 @@ rad3.grid(column = 2, row = 7)
 #about
 txt_about = Label(window, text = "Раскажите о себе")
 txt_about.grid(column = 0, row = 8)
+
 about = scrolledtext.ScrolledText(window, width = 40, height = 5)
 about.insert(INSERT, 'Впишите сюда что-нибудь')
 about.grid(column = 0, row = 9)

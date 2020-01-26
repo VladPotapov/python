@@ -97,4 +97,62 @@ class BJ_Dealer(BJ_Hand):
         first_card.flip()
 
 class BJ_Game(object):
-    """"""
+    """Игра в блэк-джек"""
+    def __init__(self, names):
+        self.players = []
+
+        for name in names:
+            player = BJ_Player(name)
+            self.players.append(player)
+
+        self.dealer = BJ_Dealer("Dealer")
+
+        self.deck = BJ_Deck()
+        self.deck.populate()
+        self.deck.shuffle()
+
+        @property
+        def still_playing(self):
+            sp = []
+
+            for player in self.player:
+                if not player.is_busted():
+                    sp.append(player)
+            return sp
+
+        def __additional_cards(self, player):
+            while not player.is_busted() and player.is_hitting():
+                self.deck.deal([player])
+                print(player)
+
+                if player.is_busted():
+                    player.bust()
+
+        def play(self):
+            # сдать всем по 2 карты
+            self.deck.deal(self.playrs + [self.dealer], per_hand = 2)
+            # первая карта диллера переворачивается рубашкой вверх
+            self.dealer.flip_first_card()
+
+            for player in self.players:
+                print(player)
+            print(self.dealer)
+
+            #сдача дополнительных карт
+            for player in self.players:
+                self.__additional_cards(player)
+
+            self.dealer.flip_first_card()
+
+            if not self.still_playing:
+                # все игроки перебрали
+                print(self.dealer)
+            else:
+                # сдача дополнительных карт диллеру
+                print(self.dealer)
+                self.__additional_cards(self.dealer)
+
+                if self.dealer.is_busted():
+                    # выигрывают все кто в игре
+                    for player in self.still_playing:
+                        player.win()

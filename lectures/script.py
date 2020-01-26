@@ -1,11 +1,8 @@
-def  arr3():
-    A = [1, 2, 3, 4, 5, 7, 12, 9, 6]
-    B = []
+def fun2():
+    A = [1, 2, 3, 4, 5, 7]
+    n = len(A)
+    # удаление с конца
+    x = A.pop()
+    print(A)
 
-    for x in A:
-        if x % 2 == 0:
-            B.append(x**2)
-    
-    print(B)
-    
-arr3()
+fun2()
