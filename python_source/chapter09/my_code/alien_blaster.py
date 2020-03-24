@@ -1,6 +1,18 @@
+# -*- coding: utf-8 -*-
+
+#alien blaster: version 2.0
+
 import time
+import random
+
+def randNum():
+    return random.randint(0, 1)
+
+
 class Player(object):
     """игрок"""
+
+    num = randNum()
 
     def caution(self, enemy):
         print("предупредительный выстрел")
@@ -9,27 +21,39 @@ class Player(object):
 
     def blast(self, enemy):
         print("Игрок стреляет во врага")
-        enemy.die()
+        enemy.die(hero, invader)
 
 class Alien(object):
     """Враждебный инопланетянен"""
 
-    def die(self):
-        print("Ну вот и всё спета песенка моя")
-        time.sleep(1)
-        print("Передай моим личинкам живущим за 1000 световых лет")
-        time.sleep(1)
-        print("Что я их любил")
-        time.sleep(1)
-        print("А теперь прощай безжалостный мир")
+    num = randNum()
+
+    def die(self, play, ali):
+
+        if play.num == ali.num:
+            print("Ну вот и всё спета песенка моя")
+            time.sleep(1)
+            print("Передай моим личинкам живущим за 1000 световых лет")
+            time.sleep(1)
+            print("Что я их любил")
+            time.sleep(1)
+            print("А теперь прощай безжалостный мир")
+        else:
+            print("Ага промохнулся")
+            time.sleep(1)
+            print("Вот тебе получай")
+            time.sleep(1)
+            print("тюх-тюх, пах-пах, БАБАААХ!!!")
 
     def mockery(self):
         print('Ха-ха-ха, они думают что я испугаюсь их пуколок')
 
+hero = Player()
+invader = Alien()
+
 def main():
-    hero = Player()
-    invader = Alien()
     choice = None
+
     while choice != '0':
         print(
             """
@@ -38,7 +62,9 @@ def main():
             2 стрелять на поражение
             """
         )
+
         choice = input('Выбор ')
+
         if choice == '0':
             print('Пока')
             break
