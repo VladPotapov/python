@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# version 2.0
+# version 3.0
 
 import time
 import random
@@ -15,7 +15,7 @@ def yes_no(que):
     
     return res
 
-def playGame(gamer):
+def playGame(gamer, enemy):
     choice = None
 
     while choice != '0':
@@ -33,9 +33,9 @@ def playGame(gamer):
             print('Пока')
             break
         elif choice == '1':
-            gamer.caution(invader)
+            gamer.caution(enemy)
         elif choice == '2':
-            gamer.blast(invader)
+            gamer.blast(enemy)
             break
 
 
@@ -82,8 +82,8 @@ invader = Alien()
 
 def main():
     play = None
-    while play != "n" or "н":
-        playGame(hero)
+    while play not in ("n", "н"):
+        playGame(hero, invader)
         play = yes_no("Хотите сыграть ещё раз? д / н ")
 
 main()
