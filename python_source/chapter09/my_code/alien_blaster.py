@@ -1,4 +1,12 @@
+#-*- coding: utf-8 -*-
+# version 2.1
+
 import time
+import random
+
+def num():
+    return random.randint(0, 1)
+
 class Player(object):
     """игрок"""
 
@@ -23,12 +31,22 @@ class Alien(object):
         time.sleep(1)
         print("А теперь прощай безжалостный мир")
 
+    def capture(self):
+        print("промахнулся человечешка!")
+        time.sleep(1)
+        print("ну вот и настал твой конец тебе")
+        time.sleep(1)
+        print("и всем кто дорог тебе")
+        time.sleep(1)
+        print("А-ХА-ХА-ХА-ХА!!!")
+
     def mockery(self):
         print('Ха-ха-ха, они думают что я испугаюсь их пуколок')
 
 def main():
     hero = Player()
     invader = Alien()
+
     choice = None
     while choice != '0':
         print(
@@ -38,6 +56,7 @@ def main():
             2 стрелять на поражение
             """
         )
+
         choice = input('Выбор ')
         if choice == '0':
             print('Пока')
@@ -45,7 +64,9 @@ def main():
         elif choice == '1':
             hero.caution(invader)
         elif choice == '2':
-            hero.blast(invader)
-            break
+            if num() == num():
+                hero.blast(invader)
+            else:
+                invader.capture()
 
 main()
