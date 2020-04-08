@@ -15,6 +15,9 @@ print("Вася")
 print("Привет", end=" ")
 print("Петя")
 
-#соединить и на последней добавить sep
+print("123", end="")
+print("1", end="")
+print("456")
+
 
 input('Enter')
