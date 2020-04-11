@@ -1,29 +1,39 @@
-def fun():
-    N = 10
-    # указываем максимальное число вложенностей
-    A = [0] * N
+# у массива с фиксированным размером 
+# надо вручную отслеживать уровень заполнения 
+def level_array():
+    N_max = 10
+    A = [0] * N_max
+    # n одновременно является индексом 
+    # и количеством элементов
     n = 0
-    x = int(input("Number: "))
+    x = int(input("Number "))
+    #кладу x в ячейку под номером n
     A[n] = x
+    #после увеличиваю n
     n += 1
     print(A)
 
-def fun1():
-    # массив это объект (модифицированный список)
-    A = []
-    x = int(input("Number: "))
-    # автомотическое добавление элементов
-    A.append(x)
-    n = len(A)
-    print(n)
+#level_array()
 
-def fun2():
+#level_array2 делает тоже что и функция level_array
+def level_array2():
+    A2 = []
+    x = int(input("Number "))
+    A2.append(x)
+    #n == N
+    N = len(A2)
+    print(A2)
+    print(N)
+
+#level_array2()
+
+def delete_element():
     A = [1, 2, 3, 4, 5, 7]
-    n = len(A)
-    # удаление с конца
-    x = A.pop()
+    N = len(A)
+    x = int(input("Number "))
+    N -= 1
+    A[N] = x
     print(A)
+    print(N)
 
-
-
-
+#delete_element()
