@@ -1,4 +1,4 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
 
 name = "Roma"
 age = 35
@@ -25,7 +25,7 @@ summa = num1 + num2
 # вывести результат
 print(summa)
 
-print("Другой способ")
+print("Другой способ 2")
 print()
 s = input()
 num1, num2 = s.split()
@@ -34,8 +34,13 @@ num2 = int(num2)
 print(num1, "+", num2, "=", num1 + num2)
 
 #тоже самое
+print("способ 3")
 n1, n2 = input().split()
 n1 = int(n1)
 n2 = int(n2)
+print(n1,"+", n2, "=", n1+n2)
 
+print("способ 4")
+n1, n2 = map(int, input("Number: ").split())
+print(n1 + n2)
 input("\nEnter")
