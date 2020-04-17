@@ -1,10 +1,17 @@
-import random
+def positive_sum (arr):
+    summa = 0
+    for i in range(len(arr)):
+        if arr[i] >= 0:
+            summa += arr[i]
 
-def min_max(x, y):
-    return random.randint(x, y)
+    if arr == []:
+        return 0
 
-num = min_max(1, 5)
+    return summa
 
-print(num)
 
-input("\nEnter")
+my_arr1 = [-1, 2, -5, 7, 9]
+my_arr2 = []
+my_arr3 = [-3, -5, -7, -1]
+
+print(positive_sum(my_arr3))

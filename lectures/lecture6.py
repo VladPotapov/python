@@ -17,16 +17,16 @@ def level_array():
 
 #level_array2 делает тоже что и функция level_array
 def level_array2():
-    A2 = []
+    A = []
     x = int(input("Number "))
-    A2.append(x)
-    #n == N
-    N = len(A2)
-    print(A2)
-    print(N)
+    A.append(x)
+    n = len(A)
+    print(A)
+    print(n)
 
 #level_array2()
 
+#удаление с конца
 def delete_element():
     A = [1, 2, 3, 4, 5, 7]
     N = len(A)
@@ -35,5 +35,17 @@ def delete_element():
     A[N] = x
     print(A)
     print(N)
+    print(x)
 
-#delete_element()
+delete_element()
+
+def delete_element2():
+    A = [1, 2, 3, 4, 5, 7]
+    n = len(A)
+    x = A.pop()
+    print(A)
+    print(n)
+    print(x)
+
+#delete_element2()
+

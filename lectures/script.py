@@ -1,8 +1,21 @@
-def fun2():
+def delete_element():
     A = [1, 2, 3, 4, 5, 7]
     n = len(A)
-    # удаление с конца
+    n -= 1
+    x = A[n]
+    print(A)
+    print(x)
+    print(n)
+
+#delete_element()
+
+def delete_element2():
+    A = [1, 2, 3, 4, 5, 7]
+    n = len(A)
     x = A.pop()
     print(A)
+    print(n)
+    print(x)
 
-fun2()
+delete_element2()
+
