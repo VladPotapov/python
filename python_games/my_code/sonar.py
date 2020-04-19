@@ -62,3 +62,53 @@ def getRandomChests(numChests):
 def isOnBoard(x, y):
     # возвращать true если координаты есть на поле, иначе возвращать false
     return  x >= 0 and x <= 59 and y >= 0 and y <= 14
+
+def makeMove(board, chests, x, y):
+    #изменить структуру поля данных поля, используя символ гитдролокатора. 
+    # Удалить сундуки из списка если они найдены. 
+    # Вернуть False это недопустимый ход 
+    # Иначе вернуть строку с результатами хода 
+    # Все сундуки будут расположены ближе, 
+    # чем на растоянии в 100 единиц
+    smallestDistance = 100
+    for cx, cy in chests:
+        distance = math.sqrt((cx - x) * (cx - x) + (cy - y) * (cy - y))
+
+        #ищем ближайший сундук
+        if distance < smallestDistance:
+            smallestDistance = distance
+
+    smallestDistance = round(smallestDistance)
+
+    if smallestDistance == 0:
+        # координаты xy указывают на сундук
+        chests.remove([x, y])
+        return "Вы нашли сундук с сокровищами на затонувшем судне"
+    else:
+        if smallestDistance < 10:
+            board[x][y] = str(smallestDistance)
+            return  "Сундук с сокровищами обнаружен на растоянии %x от гидролокатора." % (smallestDistance)
+        else:
+            board[x][y] = 'x'
+            return  'Гидролокатор ничего не обнаружил'
+
+def enterPlayerMove(previousMoves):
+    #позволить игроку сделать ход. 
+    # Вернуть двухэлементный список с целыми координатами x, y
+    print(
+        """
+        Где следует опустить гидролокатор (координаты 
+        x: (0 - 59), y: (0 - 14)
+        или введите выход
+        """
+    )
+
+    while True:
+        move = input()
+        if move.lower() == "выход":
+            print("Спасибо за игру")
+            sys.exit()
+
+        move = move.split()
+        if len(move) == 2 and move[0].isdigit() and move[1].isdigit() and isOnBoard(int(move[0]), int(move[1])):
+            #....
