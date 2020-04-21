@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
+# playing cards
+# version 2.0
+
 class Card(object):
-    """Игральная карта"""
+    """ Одна игральная карта """
     RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     SUITS = ["c", "d", "h", "s"]
 
@@ -12,7 +16,7 @@ class Card(object):
         return rep
 
 class Hand(object):
-    """кол-во карт на руках"""
+    """количество карт на руках"""
     def __init__(self):
         self.cards = []
 
@@ -28,7 +32,7 @@ class Hand(object):
     def clear(self):
         self.cards = []
 
-    def add(self, card):
+    def  add(self, card):
         self.cards.append(card)
 
     def give(self, card, other_hand):
@@ -36,7 +40,7 @@ class Hand(object):
         other_hand.add(card)
 
 class Deck(Hand):
-    """колода карт"""
+    """ Колода карт """
     def populate(self):
         for suit in Card.SUITS:
             for rank in Card.RANKS:
@@ -65,11 +69,6 @@ print(deck1)
 deck1.populate()
 
 print("Обновление колоды")
-print(deck1)
-
-deck1.shuffle()
-
-print("Перемешать колоду")
 print(deck1)
 
 my_hand = Hand()
