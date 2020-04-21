@@ -29,15 +29,14 @@ def level_array2():
 #удаление с конца
 def delete_element():
     A = [1, 2, 3, 4, 5, 7]
-    N = len(A)
-    x = int(input("Number "))
-    N -= 1
-    A[N] = x
+    n = len(A)
+    x = A[n - 1]
+    A = A[0:n - 1]
     print(A)
-    print(N)
+    print(n)
     print(x)
 
-delete_element()
+#delete_element()
 
 def delete_element2():
     A = [1, 2, 3, 4, 5, 7]
@@ -48,4 +47,34 @@ def delete_element2():
     print(x)
 
 #delete_element2()
+
+# List comprehensions
+
+def list_compr():
+    # variant a
+    A = [x ** 2 for x in range(10)]
+    B = []
+    # or
+    # variant b работает медленее 
+    # чем варинт a
+    for x in range(10):
+        B.append(x ** 2)
+
+    C = [x + 1 for x in range(10)]
+    print(A)
+    print(B)
+    print(C)
+
+#list_compr()
+
+# Поиск чётных чисел
+
+def even_number():
+    A = [1, 2, 3, 4, 5, 7, 9, 12, 6]
+    B = []
+    for x in A:
+        if x % 2 == 0:
+           B.append(x ** 2) # или x * x
+
+
 

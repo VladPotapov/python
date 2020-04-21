@@ -1,21 +1,9 @@
-def delete_element():
-    A = [1, 2, 3, 4, 5, 7]
-    n = len(A)
-    n -= 1
-    x = A[n]
-    print(A)
-    print(x)
-    print(n)
+def even_number():
+    A = [1, 2, 3, 4, 5, 7, 9, 12, 6]
+    B = []
+    for x in A:
+        if x % 2 == 0:
+           B.append(x ** 2) # или x * x
+    print(B)
 
-#delete_element()
-
-def delete_element2():
-    A = [1, 2, 3, 4, 5, 7]
-    n = len(A)
-    x = A.pop()
-    print(A)
-    print(n)
-    print(x)
-
-delete_element2()
-
+even_number()
