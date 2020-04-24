@@ -1,9 +1,11 @@
-def even_number():
-    A = [1, 2, 3, 4, 5, 7, 9, 12, 6]
+def insert_sort():
+    A = [4, 2, 5, 1, 3]
     B = []
-    for x in A:
-        if x % 2 == 0:
-           B.append(x ** 2) # или x * x
+
+    for i in range(len(A)):
+        B.append(A[i])
+        
+
     print(B)
 
-even_number()
+insert_sort()
