@@ -166,7 +166,7 @@ def showInctructions():
         Гидролокаторы определяют сундуки на расстоянии до 9 единиц.
         Нужно поднять 3 сундука, до того как все гидролокаторы будут опущены на дно
         """)
-        input()
+    input()
 
 print("Охотник за сокровищами")
 print()
@@ -185,3 +185,36 @@ while True:
 
     while sonarDevices > 0:
         # Показать сонарные устройства и сундуки с сокровищами
+        print("Осталось гидролокаторов %s. Осталось сундуков с сокровищами: %s. " % (sonarDevices, len(theChests)))
+
+        x, y  = enterPlayerMove(previousMoves)
+        previousMoves.append([x, y])    # мы должны отслеживать все ходы, чтобы сонары могли обнажружить
+
+        moveResult = makeMove(theBoard, theChests, x, y)
+        if moveResult == False:
+            continue
+        else:
+            if moveResult == "Вы нашли с сокровищами на затонувшем судне":
+                # обновить все сонарные устройства, в настоящее время находящееся на дне
+                for x, y in previousMoves:
+                    makeMove(theBoard, theChests, x, y)
+            drawBoard(theBoard)
+            print(moveResult)
+
+        if len(theChests) == 0:
+            print("Вы нашли все сундуки с сокровищами на затонувших судах! Поздравляем с победой")
+            break
+
+        sonarDevices -= 1
+
+    if sonarDevices == 0:
+        print("Все гидролокаторы опущены на дно! Придётся разворачивать корабли")
+        print("И отправляться домой, в порт! игра окончена")
+        print("Вы не нашли суднуки в следующих местах:")
+        
+        for x, y in theChests:
+            print('%s, %s ' % (x, y))
+
+    print("Хотите сыграть ещё раз? (да или нет)")
+    if not input().lower().startswith('д'):
+        sys.exit()
