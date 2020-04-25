@@ -172,7 +172,7 @@ print("Охотник за сокровищами")
 print()
 print("Показать инструктаж? (да/нет)")
 
-if input().lower().startswitch("д"):
+if input().lower().startswith("д"):
     showInctructions()
 
 while True:
