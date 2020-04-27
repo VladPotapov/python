@@ -95,9 +95,21 @@ def even_number2(A, B):
 # чем другие (циклический сдвиг) 
 # сортировка вставками (insert sort)
 
-def insert_sort():
-    A 
+A_insert = [4, 2, 5, 1, 3]
+def insert_sort(nums):
+    # Начнем со второго элемента, так как мы предполагаем, что первый элемент отсортирован
+    for i in range(1, len(nums)):
+        item_to_insert = nums[i]
+        # И сохранить ссылку на индекс предыдущего элемента
+        j = i - 1
+        # Переместить все элементы отсортированного сегмента вперед, 
+        # если они больше, чем элемент для вставки
+        while j >= 0 and nums[j] > item_to_insert:
+            nums[j + 1] = nums[j]
+            j -= 1
+        # вставляем элемент
+        nums[j + 1] = item_to_insert
 
-
-
+# insert sort и choice sort 
+# использует N - 1 проход
 
