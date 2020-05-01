@@ -70,18 +70,32 @@ polygon([(220, 100), (220, 70), (240, 70), (240, 100)])
 polygon([(260, 60), (280, 60), (280, 80), (260, 80), (260, 60)])
 
 # крыша 
+brushColor("black")
 polygon([(50, 300), (75, 275), (175, 275), (200, 300), (50, 300)])
 # стена 
+brushColor("cyan")
 rectangle(60, 300, 190, 350)
 # окна  
 x1 = 70
 y1 = 310
 x2 = 90
 y2 = 330
-for _ in range(4):
+cont = 0
+brushColor("yellow")
+for i in range(3):
+    cont += 1
     rectangle(x1, y1, x2, y2)
-    x1 += 30
-    x2 += 30
+    if cont == 1:
+        x1 += 60
+        x2 += 60
+    else:
+        x1 += 30
+        x2 += 30
 # дверь
+brushColor("brown")
+rectangle(100, 310, 120, 350)
+# солнце
+brushColor("yellow")
+circle(200, 200, 25)
 
 run()
