@@ -1,30 +1,33 @@
-def choice_sort():
-    A = [4, 2, 5, 1, 3]
-    N = len(A)
-    #индекс первой ячейки
+import random
+
+def bubble_sort_for():
+    # количество элементов
+    N = 10
+    a = []
+
+    for i in range(N):
+        a.append(random.randint(1, 99))
+    print(a)
+
+    for i in range(N - 1):
+        for j in range(N - i - 1):
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+    print(a)
+
+def bubble_sort_while():
+    N = 10
+    a = []
+    for i in range(N):
+        a.append(random.randint(1, 100))
+    print(a)
+
     i = 0
-
-    # последний элемент сортировать не надо
     while i < N - 1:
-        # переменная m будет хранить минимальное значение 
-        # изначально это i
-        m = i
-        # поиск ячейки следующей за i
-        j = i + 1
-        while j < N:
-            # сравниваем значение ячеек
-            if A[j] < A[m]:
-                m = j
+        j = 0
+        while j < N - 1 - i:
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
             j += 1
-        # обмен значений
-        # в ячейку i записывается минимум 
-        # а значение из i записывается 
-        # на старое место минимума
-        A[i], A[m] = A[m], A[i]
-        # переход к следующей ячейки
         i += 1
-    print(A)
-
-choise_sort()
-
-
+    print(a)

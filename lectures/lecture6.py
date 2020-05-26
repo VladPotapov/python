@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 
 # у массива с фиксированным размером 
 # надо вручную отслеживать уровень заполнения 
@@ -97,7 +98,11 @@ def even_number2(A, B):
 # чем другие (циклический сдвиг) 
 # сортировка вставками (insert sort)
 
-#метод вставками
+#метод вставками 
+# (bubble sort)
+# сортировка из 5 элементов 
+# 1 + 2 + 3 + 4 = 10 
+# ((N * (N - 1)) / 2) * k
 A_insert = [4, 2, 5, 1, 3]
 def insert_sort(nums):
     # Начнем со второго элемента, так как мы предполагаем, что первый элемент отсортирован
@@ -144,3 +149,43 @@ def choice_sort():
         # переход к следующей ячейки
         i += 1
     print(A)
+
+# сортировка методом пузырька 
+# (bubble sort)
+# сортировка из 5 элементов 
+# 4 + 3 + 2 + 1 = 10
+# 1 + 2 + ...(N - 1) = (N * (N - 1)) / 2
+# пример: 
+# (5 * (5 - 1)) / 2 = 10
+
+def bubble_sort_for():
+    # количество элементов
+    N = 10
+    a = []
+
+    for i in range(N):
+        a.append(random.randint(1, 99))
+    print(a)
+
+    for i in range(N - 1):
+        for j in range(N - i - 1):
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+    print(a)
+
+def bubble_sort_while():
+    N = 10
+    a = []
+    for i in range(N):
+        a.append(random.randint(1, 100))
+    print(a)
+
+    i = 0
+    while i < N - 1:
+        j = 0
+        while j < N - 1 - i:
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+            j += 1
+        i += 1
+    print(a)
