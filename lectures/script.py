@@ -3,12 +3,21 @@ import random
 
 def insert_sort(A):
     """Сортировка вставками"""
-    pass
+    N = len(A)
+    for top in range(1, N):
+        k = top
+        while k > 0 and A[k-1] > A[k]:
+            A[k], A[k-1] = A[k-1], A[k]
+            k -= 1
 
 
 def choise_sort(A):
     """Сортировка выбором"""
-    pass
+    N = len(A)
+    for pos in range(0, N - 1):
+        for k in range(pos + 1, N):
+            if A[k] < A[pos]:
+                A[k], A[pos] = A[pos], A[k]
 
 
 def bubble_sort(A):
