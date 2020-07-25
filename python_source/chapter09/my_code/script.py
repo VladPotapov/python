@@ -1,81 +1,79 @@
-# -*- coding: utf-8 -*-
-# modul cards
+# game blackjack
 # version 1.0
 
-class Card(object):
-    """Одна игральная карта"""
-    RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-    #c - clubs - трефы
-    #d - diamonds - бубны
-    #h - hearts - червы
-    #s - spades - пики
-    SUITS = ["c", "d", "h", "s"]
+import cards
+import games
 
-    def __init__(self, rank, suit, face_up=True):
-        self.rank = rank
-        self.suit = suit
-        self.is_face_up = face_up
 
-    def __str__(self):
+class BJ_Card(cards.Card):
+    """Карта для игры"""
+    ACE_VALUE = 1
+
+    @property
+    def value(self):
         if self.is_face_up:
-            rep = self.rank + self.suit
+            v = BJ_Card.RANKS.index(self.rank) + 1
+
+            if v > 10:
+                v = 10
         else:
-            rep = "XX"
+            v = None
 
-        return rep
-
-    def flip(self):
-        self.is_face_up = not self.is_face_up
+        return v
 
 
-class Hand(object):
-    """Набор карт у одного игрока"""
-
-    def __init__(self):
-        self.cards = []
-
-    def __str__(self):
-        if self.cards:
-            rep = ""
-            for card in self.cards:
-                rep += str(card) + "\t"
-        else:
-            rep = "<empty>"
-        return rep
-
-    def clear(self):
-        self.cards = []
-
-    def add(self, card):
-        self.cards.append(card)
-
-    def give(self, card, other_hand):
-        self.cards.remove(card)
-        other_hand.add(card)
-
-
-class Deck(Hand):
-    """Колода игральных карт"""
+class BJ_Deck(cards.Deck):
+    """колода для игры"""
 
     def populate(self):
-        for suit in Card.SUITS:
-            for rank in Card.RANKS:
-                self.add(Card(rank, suit))
-
-    def shuffle(self):
-        import random
-        random.shuffle(self.cards)
-
-    def deal(self, hands, per_hand=1):
-        for rounds in range(per_hand):
-            for hand in hands:
-                if self.cards:
-                    top_card = self.cards[0]
-                    self.give(top_card, hand)
-                else:
-                    print("Не могу больше сдавать карты")
+        for suit in BJ_Card.SUITS:
+            for rank in BJ_Card.RANKS:
+                self.cards.append(BJ_Card(rank, suit))
 
 
-if __name__ == "__main__":
-    print("Это модуль содержащий классы для карточных игр")
-    print("\nEnter")
+class BJ_Hand(cards.Hand):
+    """карты на руках игрока"""
+
+    def __init__(self, name):
+        super(BJ_Hand, self).__init__()
+        self.name = name
+
+    def __str__(self):
+        rep = self.name + ":\t" + super(BJ_Hand, self).__str__()
+
+        if self.total:
+            rep += "(" + str(self.total) + ")"
+
+        return rep
+
+    @property
+    def total(self):
+        # если карта в руке имеет значение None, то total равен None
+        for card in self.cards:
+            if not card.value:
+                return None
+
+        # сложите значения карт, относитесь к каждому Тузу как к 1
+        t = 0
+        for card in self.cards:
+            t += card.value
+
+        # определите, содержит ли рука туза
+        contains_ace = False
+        for card in self.cards:
+            if card.value == BJ_Card.ACE_VALUE:
+                contains_ace = True
+
+        # если рука содержит туза и тотал достаточно низок, относитесь к Тузу как к 11
+        if contains_ace and t <= 11:
+            # добавьте только 10, так как мы уже добавили 1 для туза
+            t += 10
+
+        return t
+
+    def is_busted(self):
+        return self.total > 21
+
+
+class BJ_Player(BJ_Hand):
+    """"""

@@ -1,23 +1,25 @@
-# -*- coding: utf-8 
-# sonar.py 
+# -*- coding: utf-8
+# sonar.py
 # version 1.0
 
 import random
 import sys
 import math
 
+
 def getNewBoard():
     # создать структуру  данных нового игрового поля размером 60х15
     board = []
-    for x in range(60): # главный список из 60 списков
+    for x in range(60):  # главный список из 60 списков
         board.append([])
-        for _ in range(15): # каждый список в главном списке содержит 15 односимвольных строк 
+        for _ in range(15):  # каждый список в главном списке содержит 15 односимвольных строк
             # для создания океана испльзуем разные символы, чтобы сделать его реалистичнее
             if random.randint(0, 1) == 0:
                 board[x].append('~')
             else:
                 board[x].append('`')
     return board
+
 
 def drawBoard(board):
     # изобразить структуру данных игрового поля
@@ -50,31 +52,34 @@ def drawBoard(board):
     print(' ' + ('0123456789' * 6))
     print(tensDigitalsLine)
 
+
 def getRandomChests(numChests):
     # создать список структур данных сундука (двухэлемнтыные списки координат х, у)
     chests = []
     while len(chests) < numChests:
         newChests = [random.randint(0, 59), random.randint(0, 14)]
-        if newChests not in chests: # убедится что сундука тут нет
+        if newChests not in chests:  # убедится что сундука тут нет
             chests.append(newChests)
     return chests
 
+
 def isOnBoard(x, y):
     # возвращать true если координаты есть на поле, иначе возвращать false
-    return  x >= 0 and x <= 59 and y >= 0 and y <= 14
+    return x >= 0 and x <= 59 and y >= 0 and y <= 14
+
 
 def makeMove(board, chests, x, y):
-    #изменить структуру поля данных поля, используя символ гитдролокатора. 
-    # Удалить сундуки из списка если они найдены. 
-    # Вернуть False это недопустимый ход 
-    # Иначе вернуть строку с результатами хода 
-    # Все сундуки будут расположены ближе, 
+    # изменить структуру поля данных поля, используя символ гитдролокатора.
+    # Удалить сундуки из списка если они найдены.
+    # Вернуть False это недопустимый ход
+    # Иначе вернуть строку с результатами хода
+    # Все сундуки будут расположены ближе,
     # чем на растоянии в 100 единиц
     smallestDistance = 100
     for cx, cy in chests:
         distance = math.sqrt((cx - x) * (cx - x) + (cy - y) * (cy - y))
 
-        #ищем ближайший сундук
+        # ищем ближайший сундук
         if distance < smallestDistance:
             smallestDistance = distance
 
@@ -87,13 +92,14 @@ def makeMove(board, chests, x, y):
     else:
         if smallestDistance < 10:
             board[x][y] = str(smallestDistance)
-            return  "Сундук с сокровищами обнаружен на растоянии %x от гидролокатора." % (smallestDistance)
+            return "Сундук с сокровищами обнаружен на растоянии %x от гидролокатора." % (smallestDistance)
         else:
             board[x][y] = 'x'
-            return  'Гидролокатор ничего не обнаружил'
+            return 'Гидролокатор ничего не обнаружил'
+
 
 def enterPlayerMove(previousMoves):
-    #позволить игроку сделать ход. 
+    # позволить игроку сделать ход.
     # Вернуть двухэлементный список с целыми координатами x, y
     print(
         """
@@ -116,6 +122,7 @@ def enterPlayerMove(previousMoves):
                 continue
             return [int(move[0]), int(move[1])]
         print("Введите число от 0 до 59 и через пробел число от 0 до 14")
+
 
 def showInctructions():
     print(
@@ -168,6 +175,7 @@ def showInctructions():
         """)
     input()
 
+
 print("Охотник за сокровищами")
 print()
 print("Показать инструктаж? (да/нет)")
@@ -185,16 +193,18 @@ while True:
 
     while sonarDevices > 0:
         # Показать сонарные устройства и сундуки с сокровищами
-        print("Осталось гидролокаторов %s. Осталось сундуков с сокровищами: %s. " % (sonarDevices, len(theChests)))
+        print("Осталось гидролокаторов %s. Осталось сундуков с сокровищами: %s. " % (
+            sonarDevices, len(theChests)))
 
-        x, y  = enterPlayerMove(previousMoves)
-        previousMoves.append([x, y])    # мы должны отслеживать все ходы, чтобы сонары могли обнажружить
+        x, y = enterPlayerMove(previousMoves)
+        # мы должны отслеживать все ходы, чтобы сонары могли обнажружить
+        previousMoves.append([x, y])
 
         moveResult = makeMove(theBoard, theChests, x, y)
         if moveResult == False:
             continue
         else:
-            if moveResult == "Вы нашли с сокровищами на затонувшем судне":
+            if moveResult == "Вы нашли сундук с сокровищами на затонувшем судне!":
                 # обновить все сонарные устройства, в настоящее время находящееся на дне
                 for x, y in previousMoves:
                     makeMove(theBoard, theChests, x, y)
@@ -202,7 +212,8 @@ while True:
             print(moveResult)
 
         if len(theChests) == 0:
-            print("Вы нашли все сундуки с сокровищами на затонувших судах! Поздравляем с победой")
+            print(
+                "Вы нашли все сундуки с сокровищами на затонувших судах! Поздравляем с победой")
             break
 
         sonarDevices -= 1
@@ -211,7 +222,7 @@ while True:
         print("Все гидролокаторы опущены на дно! Придётся разворачивать корабли")
         print("И отправляться домой, в порт! игра окончена")
         print("Вы не нашли суднуки в следующих местах:")
-        
+
         for x, y in theChests:
             print('%s, %s ' % (x, y))
 

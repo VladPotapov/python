@@ -1,24 +1,28 @@
 # -*- coding: utf-8 -*-
 import random
 
-# у массива с фиксированным размером 
-# надо вручную отслеживать уровень заполнения 
+# у массива с фиксированным размером
+# надо вручную отслеживать уровень заполнения
+
+
 def level_array():
     N_max = 10
     A = [0] * N_max
-    # n одновременно является индексом 
+    # n одновременно является индексом
     # и количеством элементов
     n = 0
     x = int(input("Number "))
-    #кладу x в ячейку под номером n
+    # кладу x в ячейку под номером n
     A[n] = x
-    #после увеличиваю n
+    # после увеличиваю n
     n += 1
     print(A)
 
-#level_array()
+# level_array()
 
-#level_array2 делает тоже что и функция level_array
+# level_array2 делает тоже что и функция level_array
+
+
 def level_array2():
     A = []
     x = int(input("Number "))
@@ -27,9 +31,11 @@ def level_array2():
     print(A)
     print(n)
 
-#level_array2()
+# level_array2()
 
-#удаление с конца
+# удаление с конца
+
+
 def delete_element():
     A = [1, 2, 3, 4, 5, 7]
     n = len(A)
@@ -39,7 +45,8 @@ def delete_element():
     print(n)
     print(x)
 
-#delete_element()
+# delete_element()
+
 
 def delete_element2():
     A = [1, 2, 3, 4, 5, 7]
@@ -49,16 +56,17 @@ def delete_element2():
     print(n)
     print(x)
 
-#delete_element2()
+# delete_element2()
 
 # List comprehensions
+
 
 def list_compr():
     # variant a
     A = [x ** 2 for x in range(10)]
     B = []
     # or
-    # variant b работает медленее 
+    # variant b работает медленее
     # чем варинт a
     for x in range(10):
         B.append(x ** 2)
@@ -68,18 +76,21 @@ def list_compr():
     print(B)
     print(C)
 
-#list_compr()
+# list_compr()
 
 # Поиск чётных чисел
+
 
 def even_number():
     A = [1, 2, 3, 4, 5, 7, 9, 12, 6]
     B = []
     for x in A:
         if x % 2 == 0:
-           B.append(x ** 2) # или x * x
+            B.append(x ** 2)  # или x * x
 
 # even_number2 делает тоже что и even_number
+
+
 def even_number2(A, B):
     # так
     B = [x ** 2 for x in A if x % 2 == 0]
@@ -89,28 +100,30 @@ def even_number2(A, B):
     print(B)
 
 
-# сортировка 
+# сортировка
 # Квадратичные сортировки O(N**2)
-# количество операций на обработку массива равно примерно N ** 2 
-# где N длина массива 
-# Асимптотика (работа с памятью) или (скорость вычисления) 
-# сортировка требует больше операций остальных 
-# чем другие (циклический сдвиг) 
+# количество операций на обработку массива равно примерно N ** 2
+# где N длина массива
+# Асимптотика (работа с памятью) или (скорость вычисления)
+# сортировка требует больше операций остальных
+# чем другие (циклический сдвиг)
 # сортировка вставками (insert sort)
 
-#метод вставками 
+# метод вставками
 # (bubble sort)
-# сортировка из 5 элементов 
-# 1 + 2 + 3 + 4 = 10 
+# сортировка из 5 элементов
+# 1 + 2 + 3 + 4 = 10
 # ((N * (N - 1)) / 2) * k
 A_insert = [4, 2, 5, 1, 3]
+
+
 def insert_sort(nums):
     # Начнем со второго элемента, так как мы предполагаем, что первый элемент отсортирован
     for i in range(1, len(nums)):
         item_to_insert = nums[i]
         # И сохранить ссылку на индекс предыдущего элемента
         j = i - 1
-        # Переместить все элементы отсортированного сегмента вперед, 
+        # Переместить все элементы отсортированного сегмента вперед,
         # если они больше, чем элемент для вставки
         while j >= 0 and nums[j] > item_to_insert:
             nums[j + 1] = nums[j]
@@ -118,20 +131,20 @@ def insert_sort(nums):
         # вставляем элемент
         nums[j + 1] = item_to_insert
 
-# insert sort и choice sort 
-# использует N - 1 проход 
+# insert sort и choice sort
+# использует N - 1 проход
 
 
 # метод выбора
 def choice_sort():
     A = [4, 2, 5, 1, 3]
     N = len(A)
-    #индекс первой ячейки
+    # индекс первой ячейки
     i = 0
 
     # последний элемент сортировать не надо
     while i < N - 1:
-        # переменная m будет хранить минимальное значение 
+        # переменная m будет хранить минимальное значение
         # изначально это i
         m = i
         # поиск ячейки следующей за i
@@ -142,21 +155,22 @@ def choice_sort():
                 m = j
             j += 1
         # обмен значений
-        # в ячейку i записывается минимум 
-        # а значение из i записывается 
+        # в ячейку i записывается минимум
+        # а значение из i записывается
         # на старое место минимума
         A[i], A[m] = A[m], A[i]
         # переход к следующей ячейки
         i += 1
     print(A)
 
-# сортировка методом пузырька 
+# сортировка методом пузырька
 # (bubble sort)
-# сортировка из 5 элементов 
+# сортировка из 5 элементов
 # 4 + 3 + 2 + 1 = 10
 # 1 + 2 + ...(N - 1) = (N * (N - 1)) / 2
-# пример: 
+# пример:
 # (5 * (5 - 1)) / 2 = 10
+
 
 def bubble_sort_for():
     # количество элементов
@@ -172,6 +186,7 @@ def bubble_sort_for():
             if a[j] > a[j + 1]:
                 a[j], a[j + 1] = a[j + 1], a[j]
     print(a)
+
 
 def bubble_sort_while():
     N = 10
@@ -189,3 +204,85 @@ def bubble_sort_while():
             j += 1
         i += 1
     print(a)
+
+
+def insert_sort_2(A):
+    """Сортировка вставками"""
+    N = len(A)
+    for top in range(1, N):
+        k = top
+        while k > 0 and A[k-1] > A[k]:
+            A[k], A[k-1] = A[k-1], A[k]
+            k -= 1
+
+
+def choise_sort_2(A):
+    """Сортировка выбором"""
+    N = len(A)
+    for pos in range(0, N-1):
+        for k in range(pos+1, N):
+            if A[k] < A[pos]:
+                A[k], A[pos] = A[pos], A[k]
+
+
+def bubble_sort_2(A):
+    """Сортировка пузырьком"""
+    N = len(A)
+    for bypass in range(1, N):
+        for k in range(0, N-bypass):
+            if A[k] > A[k+1]:
+                A[k], A[k+1] = A[k+1], A[k]
+
+
+def test_sort(sort_algorithm):
+    # указывает каким методом сортируется список
+    print("Тестируем: ", sort_algorithm.__doc__)
+
+    print("testcase: #1 ", end="")
+    A = [4, 2, 5, 1, 3]
+    A_sorted = [1, 2, 3, 4, 5]
+    sort_algorithm(A)
+    # встроенный тернарный оператор
+    print("Ok" if A == A_sorted else "Fall")
+    """
+    тоже самое
+    if A == A_sorted:
+        print("Ok")
+    else:
+        print("Fall")
+    """
+
+    print("testcase: #2 ", end="")
+    # арефметическая прогрессия
+    A = list(range(10, 20)) + list(range(0, 10))
+    A_sorted = list(range(20))
+    sort_algorithm(A)
+    print("Ok" if A == A_sorted else "Fall")
+
+    print("testcase: #3 ", end="")
+    A = [4, 2, 4, 2, 1]
+    A_sorted = [1, 2, 2, 4, 4]
+    sort_algorithm(A)
+    print("Ok" if A == A_sorted else "Fall")
+
+# сортировка подсчётом (count sort) O(N)
+# O(M) по памяти (M = кол. различных элементов)
+# унарный подсчёт:
+# 123527609028..
+# 0:||      5:|
+# 1:|       6:|
+# 2:|||     7:|
+# 3:|       8:|
+# 4:        9:|
+
+
+def count_sort():
+    N = 5
+    F = [0]*10
+
+    # частотный анализ
+    for _ in range(N):
+        x = int(input("Number "))
+        F[x] += 1
+
+    print(F)

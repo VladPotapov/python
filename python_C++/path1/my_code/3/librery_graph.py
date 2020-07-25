@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import tkinter as tk
 from graph import *
 
 
@@ -15,6 +16,26 @@ def my_circle():
         z += z
         i += 1
 
+
+def point_xy():
+    x1 = 0
+    y1 = 10
+    penColor("blue")
+    while x1 < 100:
+        point(x1, y1)
+        x1 += 1
+
+
+def __keyPress(event):
+    """показывает код нажатой буквы"""
+    print("Key Press Event:")
+    print(" event.char: ", event.char)
+    print(" event.keysym: ", event.keysym)
+    print(" event.keycode: ", event.keycode)
+    print(" event.keysym_num: ", event.keysym_num)
+
+
+point_xy()
 
 # размер окна
 windowSize(500, 500)
@@ -34,5 +55,7 @@ circle = circleInView(250, 250, 20)
 
 run()
 
-print("pointInView ", point)
-print("circleInView ", circle)
+# вывод кода клавиши
+#root = tk.Tk()
+#root.bind("<KeyPress>", __keyPress)
+# tk.mainloop()
