@@ -3,10 +3,11 @@
 
 from graph import *
 
-brushColor('Grayish')
-line(10, 20, 250, 20)
-line(250, 20, 250, 120)
-line(250, 120, 10, 120)
-line(10, 120, 10, 20)
+brushColor("LightSkyBlue")
+polygon([(10, 20), (400, 20), (400, 200), (10, 200), (10, 20)])
+
+brushColor("white")
+polygon([(20, 50), (390, 50), (390, 190), (20, 190), (20, 50)])
+
 
 run()

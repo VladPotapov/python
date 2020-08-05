@@ -34,3 +34,18 @@ def getKey():
 
         if (key >= 1 and key <= MAX_KEY_SIZE):
             return key
+
+def getTranslatedMessage(mode, message, key):
+    if mode[0] == 'p':
+        key = -key
+    translated = ''
+
+    for symbol in message:
+        symbolIndex = SYMBOLS.find(symbol)
+
+        # Символ не найден в SYMBOLS.
+        if symbolIndex == -1:
+            translated += symbol
+        else:
+            # зашифровать или расшифровать
+            symbolIndex += key

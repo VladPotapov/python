@@ -76,4 +76,40 @@ class BJ_Hand(cards.Hand):
 
 
 class BJ_Player(BJ_Hand):
+    """Игрок"""
+
+    def is_hitting(self):
+        response = games.ask_yes_no(
+            "\n" + self.name + ", будете брать карты? (y/n ")
+        return response == "y"
+
+    def bust(self):
+        print(self.name, "перебрал. ")
+        self.lose()
+
+    def lose(self):
+        print(self.name, "проиграл. ")
+
+    def win(self):
+        print(self.name, "выйграл. ")
+
+    def push(self):
+        print(self.name, "ничья.")
+
+
+class BJ_Dealer(BJ_Hand):
+    """Дилер"""
+
+    def is_hitting(self):
+        return self.total < 17
+
+    def bust(self):
+        print(self.name, "перебрал")
+
+    def flip_first_card(self):
+        first_card = self.cards[0]
+        first_card.flip()
+
+
+class BJ_Game(object):
     """"""
