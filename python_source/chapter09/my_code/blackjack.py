@@ -156,3 +156,21 @@ class BJ_Game(object):
                     # выигрывают все кто в игре
                     for player in self.still_playing:
                         player.win()
+                else:
+                    # сравниваем суммы очков у диллера и игроков
+                    for player in self.still_playing:
+                        if player.total > self.dealer.total:
+                            player.win()
+                        elif player.total < self.dealer.total:
+                            player.lose()
+                        else:
+                            player.push()
+
+                # удаление всех карт
+                for player in self.players:
+                    player.clear()
+
+                self.dealer.clear()
+
+def main():
+    print("\t\tДобро пожаловать в игру блэк-джэк")
