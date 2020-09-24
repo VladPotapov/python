@@ -39,7 +39,7 @@ class BJ_Hand(cards.Hand):
     def total(self):
         # если у одной из карт свойство value равно None 
         # то всё равно None
-        for card in in self.cards:
+        for card in self.cards:
             if not card.value:
                 return None
 
@@ -174,3 +174,22 @@ class BJ_Game(object):
 
 def main():
     print("\t\tДобро пожаловать в игру блэк-джэк")
+
+    names = []
+    number = games.ask_number("Сколько всего игроков? (1 - 7): ", low = 1, high = 8)
+
+    for i in range(number):
+        name = input("Имя игрока: ")
+        names.append(name)
+
+    print()
+
+    game = BJ_Game(names)
+    again = None
+
+    while again != "n":
+        game.play()
+        again = games.ask_yes_no("\nСыграть ещё раз?: ")
+
+main()
+input("\n\nEnter")

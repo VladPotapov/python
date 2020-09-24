@@ -1,4 +1,8 @@
-SYMBOLS = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+# -*- coding: utf-8 -*-
+# Шифр Цезаря 
+# version 2.0
+
+SYMBOLS = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя 0123456789!@#$%^&*().,'
 MAX_KEY_SIZE = len(SYMBOLS)
 
 # функция для определения шифровки или расшифровки
@@ -6,14 +10,15 @@ MAX_KEY_SIZE = len(SYMBOLS)
 
 def getMode():
     while True:
-        print("зашифровать или расшифровать текст? ")
+        print("зашифровать, расшифровать или взломать текст? ")
         mode = input().lower()
 
-        if mode in ['зашифровать', 'з', 'расшифровать', 'р']:
+        if mode in ['зашифровать', 'з', 'расшифровать', 'р', 'взломать', 'в']:
             return mode
         else:
             print('Введите "зашифровать" или "з" чтоб зашифровать')
             print('Введите "расшифровать" или "р" чтоб расшифровать')
+            print('Для взлома введите "взломать" или "в"')
 
 # принимает текст для обработки
 
@@ -49,3 +54,26 @@ def getTranslatedMessage(mode, message, key):
         else:
             # зашифровать или расшифровать
             symbolIndex += key
+
+            if symbolIndex >= len(SYMBOLS):
+                symbolIndex -= len(SYMBOLS)
+            elif symbolIndex < 0:
+                symbolIndex += len(SYMBOLS)
+            
+            translated += SYMBOLS[symbolIndex]
+
+    return translated
+
+mode = getMode()
+message = getMessage()
+mode = getMode()
+message = getMessage()
+if mode[0] != 'в':
+    key = getKey()
+
+print("Преобразованный текст: ")
+if mode[0] != 'в':
+    print(getTranslatedMessage(mode, message, key))
+else:
+    for key in range(1, MAX_KEY_SIZE + 1):
+        print(key, getTranslatedMessage('расшифровать', message, key))
