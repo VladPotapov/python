@@ -69,3 +69,60 @@ def isValidMove(board, tile, xstart, ystart):
         return False
 
     return tilesToFlip
+
+def isOnBoard(x, y):
+    # True если координаты есть на поле
+    return x >= 0 and x <= WIDTH - 1 and y >= 0 and y <= HEIGHT - 1
+
+def getBoardWithValidMoves(board, tile):
+    # вернуть новое поле с допустимыми ходами
+    bordCopy = getBoardCopy(board)
+
+    for x, y in getValidMoves(boardCopy, tile):
+        boardCopy[x][y] = '.'
+    return boardCopy
+
+def getValidMoves(board, tile):
+    # список кординатов х, у с допустимыми ходами для игрока
+    validMoves = []
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            if isValidMove((board, tile, x, y) != False):
+                validMoves.append([x, y])
+
+    return validMoves
+
+def getScoreOfBoard(board):
+    # определить количество очков, посчитав фишки 
+    # Вернуть словарь с ключами "Х" и "О"
+    xscore = 0
+    oscore = 0
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            if board[x][y] == 'X':
+                xscore += 1
+            if board[x][y] == 'O':
+                oscore += 1
+
+    return {"X":xscore, "O":oscore}
+
+    def enterPlayerTile():
+        # выбор фишки для игрока
+        # возворащает список с фишкой игрока
+        # в качестве первого элемента и второго компютера
+
+        tile = ''
+        while not (tile == 'X' or tile == 'O'):
+            print('Выберите X или O')
+            tile = input().upper()
+
+        if tile == 'X':
+            return ['X', 'O']
+        else:
+            return ['O', 'X']
+
+    def whoGoesFirst():
+        # определить кто ходит первым
+        if random.randint(0, 1) == 0:
+            return "Koмпъютер"
+        return "Человек"
