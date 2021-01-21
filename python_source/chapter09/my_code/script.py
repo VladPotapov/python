@@ -1,6 +1,9 @@
 # Карты
 # Демонстрирует сочетание объектов
-# version 1.2
+# version 1.3
+
+import sys
+
 
 class Card(object):
     """ одна игральная карта """
@@ -21,21 +24,20 @@ class Card(object):
 
 
 rank = input("Name rank: ")
+while rank not in Card.RANKS:
+    if rank == "exit" or rank == "выход":
+        sys.exit()
+
+    print("нет такой карты")
+    print("ввдите другую, карту либо выход")
+    rank = input("Name rank: ")
+
 suit = input("Name suit: ")
-
-
-# разобраться с выходом из цикла
-while rank not in Card.RANKS or suit not in Card.SUITS:
-    print("Нет такой карты")
-    rank = input("Name rank: ")
+while suit not in Card.SUITS:
+    print("нет такой масти введите другую")
     suit = input("Name suit: ")
-    if rank == "exit" or suit == "exit":
-        break
+
+my_card = Card(rank, suit)
 
 
-while rank != False or suit != False:
-    print("Вы не ввели данные")
-    rank = input("Name rank: ")
-    suit = input("Name suit: ")
-    if rank == "exit" or suit == "exit":
-        break
+print(my_card)
