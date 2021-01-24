@@ -23,6 +23,34 @@ class Card(object):
         return rep
 
 
+class Hand(object):
+    """Рука: набор карт игрока"""
+
+    def __init__(self):
+        self.cards = []
+
+    def __str__(self):
+        if self.cards:
+            rep = ""
+            for card in self.cards:
+                rep += str(card) + " "
+        else:
+            rep = "None cards"
+
+        return rep
+
+    def clear(self):
+        self.cards = []
+
+    def add(self, card):
+        self.cards.append(card)
+
+    def give(self, card, other_hand):
+        self.cards.remove(card)
+        other_hand.add(card)
+
+
+"""
 rank = input("Name rank: ")
 while rank not in Card.RANKS:
     if rank == "exit" or rank == "выход":
@@ -39,5 +67,12 @@ while suit not in Card.SUITS:
 
 my_card = Card(rank, suit)
 
-
 print(my_card)
+
+try:
+    print(my_card)
+except NameError:
+    print("Имя переменной или параметров не совпадают")
+"""
+
+Djon = Hand()
