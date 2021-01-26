@@ -1,6 +1,6 @@
 # Карты
 # Демонстрирует сочетание объектов
-# version 1.3
+# version 1.4
 
 import sys
 
@@ -50,8 +50,7 @@ class Hand(object):
         other_hand.add(card)
 
 
-"""
-rank = input("Name rank: ")
+rank = "10"
 while rank not in Card.RANKS:
     if rank == "exit" or rank == "выход":
         sys.exit()
@@ -60,7 +59,7 @@ while rank not in Card.RANKS:
     print("ввдите другую, карту либо выход")
     rank = input("Name rank: ")
 
-suit = input("Name suit: ")
+suit = "d"
 while suit not in Card.SUITS:
     print("нет такой масти введите другую")
     suit = input("Name suit: ")
@@ -73,6 +72,16 @@ try:
     print(my_card)
 except NameError:
     print("Имя переменной или параметров не совпадают")
-"""
+
 
 Djon = Hand()
+Alen = Hand()
+
+try:
+    Djon.add("Qh")
+except NameError:
+    print("Нет такого игрока")
+except AttributeError:
+    print("Неправильно указан класс")
+except TypeError:
+    print("Не указана карта")
