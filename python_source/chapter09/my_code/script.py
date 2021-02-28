@@ -1,6 +1,6 @@
 # Карты
 # Демонстрирует сочетание объектов
-# version 1.4
+# version 1.6
 
 import sys
 
@@ -50,32 +50,80 @@ class Hand(object):
         other_hand.add(card)
 
 
-rank = "10"
-while rank not in Card.RANKS:
-    if rank == "exit" or rank == "выход":
-        sys.exit()
+def check_rank(rank):
+    while rank not in Card.RANKS:
+        if rank == "exit" or rank == "выход":
+            sys.exit()
 
-    print("нет такой карты")
-    print("ввдите другую, карту либо выход")
-    rank = input("Name rank: ")
+        print("нет такой карты")
+        print("ввдите другую, карту либо выход")
+        rank = input("Name rank: ")
 
-suit = "d"
-while suit not in Card.SUITS:
-    print("нет такой масти введите другую")
-    suit = input("Name suit: ")
+    if rank in Card.RANKS:
+        return rank
 
-my_card = Card(rank, suit)
 
-print(my_card)
+def check_suit(suit):
+    while suit not in Card.SUITS:
+        if suit == "exit" or suit == "выход":
+            sys.exit()
+
+        print("нет такой масти введите другую")
+        suit = input("Name suit: ")
+
+    if suit in Card.SUITS:
+        return suit
+
+
+my_rank = input("Card: ")
+check_rank(my_rank)
+my_suit = input("Suit: ")
+check_suit(my_suit)
+
+card1 = Card(rank=my_rank, suit=my_suit)
+
+my_rank = input("Card: ")
+check_rank(my_rank)
+my_suit = input("Suit: ")
+check_suit(my_suit)
+
+card2 = Card(rank=my_rank, suit=my_suit)
+
+my_rank = input("Card: ")
+check_rank(my_rank)
+my_suit = input("Suit: ")
+check_suit(my_suit)
+
+card3 = Card(rank=my_rank, suit=my_suit)
+
+my_rank = input("Card: ")
+check_rank(my_rank)
+my_suit = input("Suit: ")
+check_suit(my_suit)
+
+card4 = Card(rank=my_rank, suit=my_suit)
+
+my_rank = input("Card: ")
+check_rank(my_rank)
+my_suit = input("Suit: ")
+check_suit(my_suit)
+
+card5 = Card(rank=my_rank, suit=my_suit)
 
 try:
-    print(my_card)
+    print(card1)
 except NameError:
     print("Имя переменной или параметров не совпадают")
 
 
 Djon = Hand()
+Djon.add(card1)
+Djon.add(card2)
+
 Alen = Hand()
+Alen.add(card3)
+Alen.add(card4)
+Alen.add(card5)
 
 try:
     Djon.add("Qh")
@@ -85,3 +133,6 @@ except AttributeError:
     print("Неправильно указан класс")
 except TypeError:
     print("Не указана карта")
+
+print(Djon)
+print(Alen)
